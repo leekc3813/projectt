@@ -1,4 +1,13 @@
+import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./BoardList.styles";
+
+const getMydate = (createdAt) => {
+  const date = new Date(createdAt)
+  const yyyy = date.getFullYear()
+  const mm = String(date.getMonth() + 1).padStart(2,'0')
+  const dd = String(date.getDate()).padStart(2,"0")
+  return `${yyyy}-${mm}-${dd}`
+}
 
 export default function BoardListUI(props) {
   return (
@@ -10,7 +19,7 @@ export default function BoardListUI(props) {
         <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
         <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
       </S.Row>
-      {props.data?.fetchBoards.map((el) => (
+      {props.data?.fetchBoards.map((el, index) => (
         <S.Row key={el._id}>
           <S.ColumnBasic>
             {String(el._id).slice(-4).toUpperCase()}
@@ -19,7 +28,7 @@ export default function BoardListUI(props) {
             {el.title}
           </S.ColumnTitle>
           <S.ColumnBasic>{el.writer}</S.ColumnBasic>
-          <S.ColumnBasic>{el.createdAt}</S.ColumnBasic>
+          <S.ColumnBasic>{getDate(getDate(el.createdAt))}</S.ColumnBasic>
         </S.Row>
       ))}
       <S.TableBottom />

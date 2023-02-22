@@ -5,7 +5,7 @@ import BoardWriteUI from './BoardWrite.presenter'
 import { CREATE_BOARD } from './BoardWrite.queries'
 
 export default function BoardWrite(){
-    const router = useRouter()
+  const router = useRouter()
 
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
